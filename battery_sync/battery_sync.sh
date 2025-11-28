@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python3 $home/battery_sync/battery_sync.py
+python3 battery_sync.py

@@ -23,7 +23,7 @@ LOG_IDENTIFIER = "[BAT STATUS]"
 
 # --- 사용자 설정 영역 ---
 # vEdge Creator 등으로 생성된 커스텀 가상 장치의 ID
-SMARTTHINGS_DEVICE_ID = "YOUR_DEVICE_ID_HERE"
+SMARTTHINGS_DEVICE_ID = "YOUR_DEVICE_ID_HERE"  # 여기에 실제 장치 ID 입력
 
 # --- 함수 정의 ---
 
@@ -111,4 +111,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:       
+        # 어떤 이유로든 실패 시 전원 소스를 'Unknown'으로 설정하여 상태 알림
+        source_cmd = 'partyvoice23922.powersource:setSource("Unknown")'
+        send_smartthings_command(SMARTTHINGS_DEVICE_ID, source_cmd)
